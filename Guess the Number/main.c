@@ -22,7 +22,6 @@ int main()
     //Get random number between 0 and 20
     randomNumber = rand() % 21;
 
-
     printf("This is a guessing game.\nI have chosen a number between 0 and 20 which you must guess.");
 
     /*Game Loop and input handlers*/
