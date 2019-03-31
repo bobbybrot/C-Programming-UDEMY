@@ -49,7 +49,7 @@ float squareRoot(float input)
 
 
     //Get Absolute Value from helper function
-    float absInput = abs(input);
+    float absInput = absVal(input);
 
     /*Square root calculation accurate to 2 decimal places*/
     while(!squareRFound)
