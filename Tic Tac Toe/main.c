@@ -13,7 +13,12 @@
 //Redraws output to display
 void drawDisplay(char[]);
 
+//Handles user input (validated input) and
+//updates board array to hold user's piece
 void playerInputHandler(unsigned int, char[]);
+
+//Helper function that checks user input is valid
+int inputValidation(char[]);
 
 int main()
 {
@@ -26,7 +31,7 @@ int main()
 
     //Counter that determine whose go it is
     //0 = Player1, 1 = Player2
-    unsigned int playerTurn = 0;
+    bool playerTurn = 0;
 
 
     /*Main game loop*/
@@ -37,13 +42,49 @@ int main()
         playerInputHandler(playerTurn, boardArray);
 
         //Bitwise operation to change who goes next
-        playerTurn = abs(~playerTurn);
+        playerTurn = !playerTurn;
 
     }
     return 0;
 }
 
 /*Function Declarations*/
+
+int inputValidation(char boardArray[])
+{
+    /*Variable Declarations*/
+    int userInput;
+    bool validValue = false;
+
+    /*Input Validation Procecdure*/
+    while(!validValue)
+    {
+        scanf("%d", &userInput);
+
+        //First validation that checks that input is between
+        //1 to 9
+        if(userInput < 1 || userInput > 9)
+        {
+            printf("\nINVALID INPUT, TRY AGAIN (1 - 9): ");
+        }
+        else
+        {
+            //Second validation which checks that tile being selected
+            //by user has not already been reserved
+            if(boardArray[userInput-1] == 'X' || boardArray[userInput-1] == 'O')
+            {
+                printf("\nTILE TAKEN, TRY AGAIN:");
+                validValue = false;
+            }
+            else
+            {
+                validValue = true;
+            }
+        }
+    }
+
+    return userInput;
+}
 
 void playerInputHandler(unsigned int playerTurn,char boardArray[])
 {
@@ -53,7 +94,7 @@ void playerInputHandler(unsigned int playerTurn,char boardArray[])
 
     /*Input Handler*/
     printf("Player %d, Input area to place your piece: ", playerTurn + 1);
-    scanf("%d",&piecePosition);
+    piecePosition = inputValidation(boardArray);
 
     /*Place piece on board depending on whose turn it is*/
     //If player 1
