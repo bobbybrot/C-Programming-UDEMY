@@ -20,35 +20,109 @@ void playerInputHandler(unsigned int, char[]);
 //Helper function that checks user input is valid
 int inputValidation(char[]);
 
+//Function that checks whether a draw or win condition has been met
+bool winCheck(char[], int);
+
 int main()
 {
     /*Variable declarations*/
     //Declare boardArray with + characters to represent empty pieces
     char boardArray[BOARDSIZE] = {'1','2','3','4','5','6','7','8','9'};
 
-    //Bool that controls main game loop
+    //Bool that controls main loop
     bool gameOver = false;
 
     //Counter that determine whose go it is
     //0 = Player1, 1 = Player2
     bool playerTurn = 0;
 
+    //Keeps track of how many times the game loop has repeated
+    //Used to check whether a draw has been reached
+    int tries = 0;
 
     /*Main game loop*/
-    while(!gameOver)
-    {
-        drawDisplay(boardArray);
+    drawDisplay(boardArray);
 
+    while(!gameOver && tries < 9)
+    {
+        //Request user input and update boardArray
         playerInputHandler(playerTurn, boardArray);
 
-        //Bitwise operation to change who goes next
-        playerTurn = !playerTurn;
+        //Clear and update console window
+        drawDisplay(boardArray);
+
+        //Check if player has won game
+        gameOver = winCheck(boardArray, playerTurn);
+
+        //Change player turn
+        if(!gameOver)
+            playerTurn = !playerTurn;
+
+        //Increment tries as current player has used their turn
+        tries++;
 
     }
+    if(gameOver)
+        printf("PLAYER %d WON :D",playerTurn + 1);
+    else if(tries == 9)
+        printf("DRAW :|");
+
     return 0;
 }
 
 /*Function Declarations*/
+
+bool winCheck(char arr[], int playerTurn)
+{
+    //Check for X layer
+    if(playerTurn == 0)
+    {
+        /*Diagonal check*/
+        if(arr[3] == 'X' && arr[4] == 'X' && arr[5] == 'X')
+            return true;
+        else if(arr[0] == 'X' && arr[4] == 'X' && arr[8] == 'X')
+            return true;
+        else if(arr[1] == 'X' && arr[4] == 'X' && arr[7] == 'X')
+            return true;
+        else if(arr[2] == 'X' && arr[4] == 'X' && arr[6] == 'X')
+            return true;
+
+        /*Vertical & horizontal check*/
+        if(arr[0] == 'X' && arr[1] == 'X' && arr[2] == 'X')
+            return true;
+        else if(arr[6] == 'X' && arr[7] == 'X' && arr[8] == 'X')
+            return true;
+        else if(arr[0] == 'X' && arr[3] == 'X' && arr[6] == 'X')
+            return true;
+        else if(arr[2] == 'X' && arr[5] == 'X' && arr[8] == 'X')
+            return true;
+    }
+    else //Check for O layer
+    {
+        /*Diagonal check*/
+        if(arr[3] == 'O' && arr[4] == 'O' && arr[5] == 'O')
+            return true;
+        else if(arr[0] == 'O' && arr[4] == 'O' && arr[8] == 'O')
+            return true;
+        else if(arr[1] == 'O' && arr[4] == 'O' && arr[7] == 'O')
+            return true;
+        else if(arr[2] == 'O' && arr[4] == 'O' && arr[6] == 'O')
+            return true;
+
+        /*Vertical & horizontal check*/
+        if(arr[0] == 'O' && arr[1] == 'O' && arr[2] == 'O')
+            return true;
+        else if(arr[6] == 'O' && arr[7] == 'O' && arr[8] == 'O')
+            return true;
+        else if(arr[0] == 'O' && arr[3] == 'O' && arr[6] == 'O')
+            return true;
+        else if(arr[2] == 'O' && arr[5] == 'O' && arr[8] == 'O')
+            return true;
+    }
+
+    //Return false if no one has won yet
+    return false;
+}
 
 int inputValidation(char boardArray[])
 {
