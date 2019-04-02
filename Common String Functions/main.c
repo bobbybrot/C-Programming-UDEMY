@@ -10,22 +10,46 @@
 /*
 * Function Prototypes
 */
-//Prints a string in reverse order
+//Challenge 1: Prints a string in reverse order
 void reverseString();
 
-
+//Challenge 2: Sort array
 void arrayBubbleSort();
 
 
 int main()
 {
-    reverseString();
+
+    //reverseString();
+    arrayBubbleSort();
     return 0;
 }
 
 /*
 *Function Definitions
 */
+
+void arrayBubbleSort()
+{
+    /*
+    * Variable Declarations
+    */
+    int noOfStrings;
+    int **stringArray;
+
+    /*
+    * User input handler
+    */
+    printf("Input number of strings: ");
+    scanf("%d",&noOfStrings);
+
+    /*
+    * STOPED HERE BECAUSE UNSURE OF WHAT TO DO
+    */
+
+
+}
+
 void reverseString()
 {
     /*
