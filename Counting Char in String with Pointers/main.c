@@ -21,12 +21,9 @@ int main()
     /*
     * Variable declarations
     */
-    char string[] = {"Hello there this is a test"};
-    int stringLength = 0;
-
-    stringLength = stringFunction(string);
-
-    printf("Length of string = %d", stringLength);
+    printf("%d\n", stringFunction("stringLength test"));
+    printf("%d\n", stringFunction(""));
+    printf("%d\n", stringFunction("Jason"));
 
     return 0;
 }
@@ -36,7 +33,7 @@ int stringFunction(const char *startString)
     /*
     * Variable Declarations
     */
-    char *endPointer = startString;
+    const char *endPointer = startString;
 
     /*
     * Find last element and record its memory address
@@ -51,5 +48,5 @@ int stringFunction(const char *startString)
         endPointer++;
     }
 
-    return *startString - *endPointer;
+    return endPointer - startString;
 }
