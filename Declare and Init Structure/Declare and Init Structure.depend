@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1554560143 source:c:\users\bobby\documents\github\c-programming-udemy\declare and init structure\main.c
+	<stdio.h>
+	<stdlib.h>
+	<stddef.h>
+
