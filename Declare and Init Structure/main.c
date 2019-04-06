@@ -32,7 +32,7 @@ int main()
     for(int i = 0; i < 2; i++)
     {
         printf("\n");
-        printf("Employee %d\n",i);
+        printf("Employee %d\n",i+1);
         printf("Employee name: %s\n",&eOne[i].name);
         printf("Employee hireDate: %d\n",eOne[i].hireDate);
         printf("Employee salary: %.2f\n",eOne[i].salary);
