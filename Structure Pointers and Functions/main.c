@@ -15,7 +15,6 @@ struct item
 };
 
 
-//
 void readItem(struct item *);
 void printItem(struct item *);
 
@@ -27,7 +26,7 @@ int main()
 
     //Allocate memory for pointer in structure
     ptr->itemName = (char*)malloc(50 *sizeof(char));
-    if(ptr == 0 || ptr->itemName == 0) //Check memory has been allocated successfully
+    if(!ptr || !ptr->itemName) //Check memory has been allocated successfully
     {
         printf("MEMORY COULD NOT BE ASSIGNED");
         return 1;
