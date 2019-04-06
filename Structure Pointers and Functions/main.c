@@ -46,6 +46,10 @@ void printItem(struct item *ptr)
     printf("Price:      %.2f\n",ptr->price);
     printf("Amount:     %.2f",ptr->amount);
 
+    //Release memory
+    free(ptr->itemName);
+    free(ptr);
+
 }
 
 void readItem(struct item *ptr)
