@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1554580189 source:c:\users\bobby\documents\github\c-programming-udemy\find number of lines in a file\main.c
+	<stdio.h>
+	<stdlib.h>
+	<stddef.h>
+
